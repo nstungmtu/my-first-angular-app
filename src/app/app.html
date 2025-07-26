@@ -147,6 +147,7 @@ tr:hover {
         <th>Nhóm quyền</th>
         <th>Trạng thái</th>
         <th>Ngày thêm</th>
+        <th></th>
       </tr>
       <!-- @for (employee of employees | filter: filter : selectedPositions.value : textFilter.value; track employee.id) { -->
       @for (employee of filteredEmployees | slice:(currentPage * rowsPerPage):(currentPage * rowsPerPage + rowsPerPage); track employee.id){
@@ -171,6 +172,16 @@ tr:hover {
           </span>
           </td>
           <td>{{ employee.joinDate | date: 'dd/MM/yyyy' }}</td>
+          <td style="text-align: right;">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item >Sửa</button>
+              <button mat-menu-item >Xoá</button>
+              <button mat-menu-item >{{ employee.active ? 'Dừng hoạt động' : 'Kích hoạt' }}</button>
+            </mat-menu>
+          </td>
         </tr>
       }
     </table>
