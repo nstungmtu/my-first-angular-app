@@ -153,7 +153,17 @@ tr:hover {
       @for (employee of filteredEmployees | slice:(currentPage * rowsPerPage):(currentPage * rowsPerPage + rowsPerPage); track employee.id){
       <tr>
           <td>{{ employee.id }}</td>
-          <td>{{ employee.name }}</td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <img [src]="'avatar.jpg'" 
+                   style="width: 48px; height: 48px; border-radius: 50%;" 
+                   [alt]="employee.name">
+              <div>
+                <div style="color: var(--mat-sys-primary); font-size: 1.2em;">{{employee.name }}</div> 
+                <div style="color: var(--mat-sys-secondary); font-size: 12px;">EMP-{{ employee.employeeId }}</div>
+              </div>
+            </div>
+          </td>
           <td>
             <span class="pill blue">{{ employee.position[0] }}</span>
             @if(toggleExpanded) {
